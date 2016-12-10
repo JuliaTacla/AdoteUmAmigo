@@ -1,74 +1,19 @@
 class FostersController < ApplicationController
-  before_action :set_foster, only: [:show, :edit, :update, :destroy]
-
-  # GET /fosters
-  # GET /fosters.json
-  def index
-    @fosters = Foster.all
-  end
-
-  # GET /fosters/1
-  # GET /fosters/1.json
-  def show
-  end
-
   # GET /fosters/new
   def new
     @foster = Foster.new
   end
 
-  # GET /fosters/1/edit
-  def edit
-  end
-
   # POST /fosters
-  # POST /fosters.json
   def create
-    @foster = Foster.new(foster_params)
-
-    respond_to do |format|
-      if @foster.save
-        format.html { redirect_to @foster, notice: 'Foster was successfully created.' }
-        format.json { render :show, status: :created, location: @foster }
-      else
-        format.html { render :new }
-        format.json { render json: @foster.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # PATCH/PUT /fosters/1
-  # PATCH/PUT /fosters/1.json
-  def update
-    respond_to do |format|
-      if @foster.update(foster_params)
-        format.html { redirect_to @foster, notice: 'Foster was successfully updated.' }
-        format.json { render :show, status: :ok, location: @foster }
-      else
-        format.html { render :edit }
-        format.json { render json: @foster.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # DELETE /fosters/1
-  # DELETE /fosters/1.json
-  def destroy
-    @foster.destroy
-    respond_to do |format|
-      format.html { redirect_to fosters_url, notice: 'Foster was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    Foster.create(foster_params)
+    animal = Animal.find(foster_params[:animal_id])
+    redirect_to root_path, notice: "#{animal.name} adotado com sucesso"
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_foster
-      @foster = Foster.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def foster_params
-      params.fetch(:foster, {})
-    end
+  def foster_params
+    params.permit(:name, :age, :address, :pets, :children, :animal_id)
+  end
 end

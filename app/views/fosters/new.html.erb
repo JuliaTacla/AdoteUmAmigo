@@ -1,1 +1,15 @@
 O, aqui é página de formulário
+
+<%= form_tag(controller: 'fosters', action: 'create') do %>
+	<%= label_tag('Nome:') %>
+	<%= text_field_tag(:name) %>
+	<%= label_tag('Idade:') %>
+	<%= number_field_tag(:age) %>
+	<%= label_tag('Endereço:') %>
+	<%= text_field_tag(:address) %>
+	<%= label_tag('Você tem outros animais?') %>
+	<%= check_box_tag(:pets) %>
+	<%= label_tag('Você tem filhos?') %>
+	<%= check_box_tag(:children) %>
+	<%= submit_tag('Enviar') %>
+<% end %>
