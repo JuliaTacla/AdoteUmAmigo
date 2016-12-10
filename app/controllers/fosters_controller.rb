@@ -8,6 +8,7 @@ class FostersController < ApplicationController
   def create
     Foster.create(foster_params)
     animal = Animal.find(foster_params[:animal_id])
+    animal.update(adopted: true)
     redirect_to root_path, notice: "#{animal.name} adotado com sucesso"
   end
 

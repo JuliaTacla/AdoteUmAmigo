@@ -14,6 +14,7 @@
     <% @animals.each do |animal| %>
       <tr>
         <td><%= link_to image_tag(animal.photo, style: 'height:300px;width:300px;',class: "img-circle img-responsive"), animal %></td>
+        <td><b><%= "adotado!" if animal.adopted %></b></td>
         <td><%= animal.name %></td>
         <td><%= animal.description %></td>
       </tr>
