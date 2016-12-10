@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161210144230) do
+ActiveRecord::Schema.define(version: 20161210170147) do
 
   create_table "animals", force: :cascade do |t|
     t.string   "photo"
@@ -28,6 +28,8 @@ ActiveRecord::Schema.define(version: 20161210144230) do
     t.boolean  "pets"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "animal_id"
+    t.index ["animal_id"], name: "index_fosters_on_animal_id"
   end
 
 end
