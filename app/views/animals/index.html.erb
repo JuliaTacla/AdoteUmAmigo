@@ -13,15 +13,12 @@
   <tbody>
     <% @animals.each do |animal| %>
       <tr>
-        <td><%= image_tag(animal.photo, style: 'height:300px;width:300px;',class: "img-circle img-responsive") %></td>
+        <td><%= link_to image_tag(animal.photo, style: 'height:300px;width:300px;',class: "img-circle img-responsive"), animal %></td>
         <td><%= animal.name %></td>
         <td><%= animal.description %></td>
-        <td><%= link_to 'Show', animal %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
 <br>
-
-<%= link_to 'New Animal', new_animal_path %>
